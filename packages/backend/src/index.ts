@@ -4,10 +4,12 @@ import { watcherRouter } from './routes/watchlist';
 import { watcher } from './watcher';
 import { config } from './config';
 import logger from './utils/logger';
+import cors from 'cors';
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use('/api/watchlist', watcherRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
