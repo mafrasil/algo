@@ -59,26 +59,18 @@ export const watcher = {
         const updatedAccountInfo = await client.accountInformation(account.address).do();
         let hasChanges = false;
          
-        for (const key in updatedAccountInfo) {
-          if (Object.prototype.hasOwnProperty.call(updatedAccountInfo, key)) {
-            const updatedValue = updatedAccountInfo[key as keyof typeof updatedAccountInfo];
-            switch (key) {
-              case 'balance':
-              case 'totalAppsOptedIn':
-              case 'totalAssetsOptedIn':
-              case 'totalCreatedApps':
-              case 'totalCreatedAssets':
-                if (account[key] !== updatedValue) {
-                  console.log(`Change detected for ${key} on address ${account.address}. Old value: ${account[key]}, New value: ${updatedValue}`);
-                  notifications.push(`Change detected for ${key} on address ${account.address}. Old value: ${account[key]}, New value: ${updatedValue}`);
-                  account[key] = updatedValue;
-                  account.updated = dayjs().format("YYYY-MM-DD HH:mm:ss");
-                  hasChanges = true;
-                }
-                break;
-              default:
-                break;
-            }
+        const keyMapping = {
+          amount: 'balance',
+        };
+        
+        for (const [apiKey, accountKey] of Object.entries(keyMapping)) {
+          const updatedValue = updatedAccountInfo[apiKey];
+          if (account[accountKey] !== updatedValue) {
+            console.log(`Change detected for ${accountKey} on address ${account.address}. Old value: ${account[accountKey]}, New value: ${updatedValue}`);
+            notifications.push(`Change detected for ${accountKey} on address ${account.address}. Old value: ${account[accountKey]}, New value: ${updatedValue}`);
+            account[accountKey] = updatedValue;
+            account.updated = dayjs().format("YYYY-MM-DD HH:mm:ss");
+            hasChanges = true;
           }
         }
         if (hasChanges) {
@@ -94,5 +86,6 @@ export const watcher = {
         }
       }
     }
-  },
+  }
+  
 };
