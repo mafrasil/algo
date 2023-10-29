@@ -1,6 +1,6 @@
-# Algorand Watcher (API)
+# Algorand Tracker (API)
 
-This package contains the backend service for the Algorand Watcher.
+This package contains the backend service for the Algo Tracker.
 
 ## Features
 - Add Algorand addresses to a watcher list.

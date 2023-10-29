@@ -1,4 +1,4 @@
-# Algo Tracker (Test)
+# Algorand Tracker (Experiment)
 
 Algo Tracker is a monorepo containing a backend service (API) and a frontend application for tracking Algorand addresses and their activities.
 
@@ -29,7 +29,7 @@ To install this project, follow these steps:
 `git clone https://github.com/mafrasil/algo.git`
 
 2. Navigate to the repository directory
-`cd algo-tracker`
+`cd algo`
 
 3. Install
 `yarn install`
@@ -37,8 +37,8 @@ To install this project, follow these steps:
 ## Running the Applications
 `yarn dev` or `yarn start`
 
-Backend: `http://localhost:3000`
-Frontend: `http://localhost:5173`
+- Backend: `http://localhost:3000`
+- Frontend: `http://localhost:5173`
 
 Alternatively you can start the backend or frontend services individually `yarn dev:backend` or `yarn dev:frontend`
 
